@@ -48,7 +48,7 @@
                     $('#updateProfileModal').modal('hide');
                     $('#username').val(updateUsername);
                     $('#username').val(updateUsername);
-                    $('.toast').toast('show');
+                    $('#updateProfileToast').toast('show');
                 },
                 error: function(error) {
                     console.log('error');
