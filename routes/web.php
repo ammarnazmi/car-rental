@@ -13,8 +13,9 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('admins.adminProfile');
+Route::prefix('admins')->name('admins.')->group(function () {
+    Route::get('/profile', function () {
+        return view('admins.adminProfile');
+    })->name('profile');
 });
 

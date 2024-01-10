@@ -1,5 +1,5 @@
-<div class="modal fade" id="updatePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <form action="" method="post" id="updatePassword">
+<div class="modal fade" id="updatePasswordModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form action="" method="post" id="updatePasswordform">
         @csrf
         <input type="hidden" id="admin_id">
         <div class="modal-dialog ">
@@ -50,10 +50,10 @@
                     confirm_password: confirmPassword,
                 },
                 success: function(response) {
-
+                    $('#updateProfileToast').toast('show');
                 },
                 error: function(error) {
-
+                    console.log('Error:', error);
                 }
             });
 
