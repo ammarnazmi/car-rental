@@ -12,19 +12,23 @@
                     <div class="form-group">
                         <label for="currentPassword">Current Password</label>
                         <input id="currentPassword" class="form-control" type="text" name="currentPassword" >
+                        <div ><span id="currentPasswordErrorMessage" class="text-danger"></span></div>
                     </div>
                     <div class="form-group pt-5">
                         <label for="newPassword">Enter New Password</label>
                         <input id="newPassword" class="form-control" type="text" name="newPassword" >
+                        <div ><span id="newPasswordErrorMessage" class="text-danger"></span></div>
+
                     </div>
                     <div class="form-group">
                         <label for="confirmPassword">Confirm Password</label>
                         <input id="confirmPassword" class="form-control" type="text" name="confirmPassword" >
+                        <div ><span id="confirmPasswordErrorMessage" class="text-danger"></span></div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" id="savePassword" class="btn btn-primary">Save</button>
+                    <button type="submit" id="savePassword" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -33,7 +37,7 @@
 
 <script>
     $(document).ready(function() {
-        $(document).on('click', '#savePassword', function(event) {
+        $('#updatePasswordform').submit(function(event) {
             event.preventDefault();
 
             var adminId = $('#adminId').val();
@@ -50,14 +54,28 @@
                     confirm_password: confirmPassword,
                 },
                 success: function(response) {
-                    $('#updateProfileToast').toast('show');
+                    $('#updatePasswordModal').modal('hide');
+                    document.getElementById("successToastMessage").textContent = response.message;
+                    $('#successToast').toast('show');
                 },
                 error: function(error) {
-                    console.log('Error:', error);
+                    document.getElementById("errorToastMessage").textContent = error.responseJSON.message;
+                    $('#errorToast').toast('show');
+
+                    if(error.responseJSON.errors.current_password[0]) {
+                        document.getElementById("currentPasswordErrorMessage").textContent = error.responseJSON.errors.current_password[0];
+                    }
+
+                    if(error.responseJSON.errors.new_password[0]){
+                        document.getElementById("newPasswordErrorMessage").textContent = error.responseJSON.errors.new_password[0];
+                    }
+
+                    if(error.responseJSON.errors.confirm_password[0]) {
+                        document.getElementById("confirmPasswordErrorMessage").textContent = error.responseJSON.errors.confirm_password[0];
+                    }
                 }
             });
 
-            window.location.reload();
         })
     });
 </script>

@@ -72,5 +72,5 @@
     </script>
     @include('admins.components.adminUpdateProfileModal')
     @include('admins.components.adminUpdatePasswordModal')
-    @include('admins.components.updateToast')
+    @include('admins.components.toast')
 @endsection
