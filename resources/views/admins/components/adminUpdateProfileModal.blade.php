@@ -12,11 +12,12 @@
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input id="updateUsername" class="form-control" type="text" name="update_username">
-                        <div class="updateUsernameError"></div>
+                        <div ><span id="updateUsernameError" class="text-danger"></span></div>
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
                         <input id="updateEmail" class="form-control" type="text" name="update_email">
+                        <div ><span id="updateEmailError" class="text-danger"></span></div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -51,9 +52,11 @@
                     $('#updateProfileToast').toast('show');
                 },
                 error: function(error) {
-                    console.log('error');
+                    document.getElementById("updateUsernameError").textContent = error.responseJSON.errors.name[0];
+                    document.getElementById("updateEmailError").textContent = error.responseJSON.errors.email[0];
                 }
             });
+            return false;
         });
     })
 </script>

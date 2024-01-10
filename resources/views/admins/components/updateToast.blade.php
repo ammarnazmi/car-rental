@@ -5,3 +5,11 @@
         </div>
     </div>
 </div>
+
+<div class="toast-container position-fixed bottom-0 start-50 translate-middle-x p-3">
+    <div id="updatePasswordToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div  class="toast-body" style="background-color: #63ffa6">
+            Password updated
+        </div>
+    </div>
+</div>
