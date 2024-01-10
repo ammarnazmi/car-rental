@@ -48,19 +48,21 @@
                 success: function(response) {
                     $('#updateProfileModal').modal('hide');
                     $('#username').val(updateUsername);
-                    document.getElementById("successToastMessage").textContent = response.message;
                     $('#successToast').toast('show');
+                    document.getElementById("successToastMessage").textContent = response.message;
+
                 },
                 error: function(error) {
                     if (error.responseJSON.errors.name[0]) {
                         document.getElementById("updateUsernameError").textContent = error.responseJSON.errors.name[0];
                     }
 
-                    if(error.responseJSON.errors.email[0];) {
+                    if(error.responseJSON.errors.email[0]) {
                         document.getElementById("updateEmailError").textContent = error.responseJSON.errors.email[0];
                     }
                 }
             });
+            return false;
         });
     })
 </script>

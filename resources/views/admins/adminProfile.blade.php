@@ -70,7 +70,7 @@
             });
         })
     </script>
-    @include('admins.components.adminUpdateProfileModal')
-    @include('admins.components.adminUpdatePasswordModal')
-    @include('admins.components.toast')
+    @include('components.admins.adminUpdateProfileModal')
+    @include('components.admins.adminUpdatePasswordModal')
+    @include('components.toast')
 @endsection
