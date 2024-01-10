@@ -46,7 +46,7 @@
             var confirmPassword = $('#confirmPassword').val();
 
             $.ajax({
-                url: '/api/admins/' + adminId + '/update-password',
+                url: '/api/admin/admins/' + adminId + '/update-password',
                 method: 'PUT',
                 data: {
                     current_password: currentPassword,
@@ -62,15 +62,15 @@
                     document.getElementById("errorToastMessage").textContent = error.responseJSON.message;
                     $('#errorToast').toast('show');
 
-                    if(error.responseJSON.errors.current_password[0]) {
+                    if(error.responseJSON.errors.current_password) {
                         document.getElementById("currentPasswordErrorMessage").textContent = error.responseJSON.errors.current_password[0];
                     }
 
-                    if(error.responseJSON.errors.new_password[0]){
+                    if(error.responseJSON.errors.new_password){
                         document.getElementById("newPasswordErrorMessage").textContent = error.responseJSON.errors.new_password[0];
                     }
 
-                    if(error.responseJSON.errors.confirm_password[0]) {
+                    if(error.responseJSON.errors.confirm_password) {
                         document.getElementById("confirmPasswordErrorMessage").textContent = error.responseJSON.errors.confirm_password[0];
                     }
                 }
