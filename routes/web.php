@@ -18,7 +18,3 @@ Route::get('/', function () {
     return view('admins.adminProfile');
 });
 
-Route::prefix('admins')->name('admins.')->controller(AdminController::class)->group(function () {
-    Route::get('{id}', 'show')->name('show');
-    Route::put('{id}', 'update')->name('update');
-});
