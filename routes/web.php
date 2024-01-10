@@ -17,5 +17,9 @@ Route::prefix('admins')->name('admins.')->group(function () {
     Route::get('/profile', function () {
         return view('admins.adminProfile');
     })->name('profile');
+
+    Route::get('/cars', function () {
+        return view('car.carListAdmin');
+    })->name('profile');
 });
 

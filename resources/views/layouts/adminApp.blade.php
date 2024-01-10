@@ -37,8 +37,8 @@
                 </button>
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
-                        <a class="nav-link active" aria-current="page" href="#">Cars</a>
-                        <a class="nav-link" href="">Profile</a>
+                        <a class="nav-link {{ Request::is('admins/cars') ? 'active' : '' }}" href="{{ url('admins/cars') }}">Cars</a>
+                        <a class="nav-link {{ Request::is('admins/profile') ? 'active' : '' }}"  href="{{ url('admins/profile') }}">Profile</a>
                         <button class="btn btn-primary">Logout</button>
                     </div>
                 </div>
