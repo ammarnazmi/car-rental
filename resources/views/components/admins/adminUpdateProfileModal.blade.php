@@ -39,7 +39,7 @@
             var updateEmail = $('#updateEmail').val();
 
             $.ajax({
-                url: '/api/admins/' + adminId + '/update-profile',
+                url: '/api/admin/admins/' + adminId + '/update-profile',
                 method: 'PUT',
                 data: {
                     name: updateUsername,
@@ -53,11 +53,11 @@
 
                 },
                 error: function(error) {
-                    if (error.responseJSON.errors.name[0]) {
+                    if (error.responseJSON.errors.name) {
                         document.getElementById("updateUsernameError").textContent = error.responseJSON.errors.name[0];
                     }
 
-                    if(error.responseJSON.errors.email[0]) {
+                    if(error.responseJSON.errors.email) {
                         document.getElementById("updateEmailError").textContent = error.responseJSON.errors.email[0];
                     }
                 }

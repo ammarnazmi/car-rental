@@ -13,3 +13,5 @@ Route::prefix('admins')->name('admins.')->controller(AdminController::class)->gr
     Route::put('{id}/update-password', 'updatePassword');
     Route::put('{id}/update-profile', 'updateProfile');
 });
+
+

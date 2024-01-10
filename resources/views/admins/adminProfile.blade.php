@@ -57,7 +57,7 @@
     <script>
         $(document).ready(function() {
             $.ajax({
-                url: '/api/admins',
+                url: '/api/admin/admins',
                 method: 'GET',
                 dataType: 'json',
                 success: function(response) {
