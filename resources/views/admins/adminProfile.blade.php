@@ -4,10 +4,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-6">
-                <div class="card">
+                <div id="profileCard" class="card">
                     <div class="card-header">
                         Profile
-                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#updateProfile">
+                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                 <path
@@ -19,13 +19,11 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label for="username">Username</label>
-                            <input id="username" class="form-control" type="text" name="username" value="Name"
-                                disabled>
+                            <input id="username" class="form-control" type="text" name="username" disabled>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input id="email" class="form-control" type="text" name="email" value="Name"
-                                disabled>
+                            <input id="email" class="form-control" type="text" name="email" disabled>
                         </div>
                     </div>
                 </div>
@@ -36,7 +34,7 @@
                 <div class="card">
                     <div class="card-header">
                         Password
-                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#updatePassword">
+                        <button class="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target="#updatePasswordModal">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                 class="bi bi-pencil-fill" viewBox="0 0 16 16">
                                 <path
@@ -55,6 +53,24 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/admins',
+                method: 'GET',
+                dataType: 'json',
+                success: function(response) {
+                    $('#username').val(response.admin.name);
+                    $('#email').val(response.admin.email);
+                    $('#updateUsername').val(response.admin.name);
+                    $('#updateEmail').val(response.admin.email);
+                    $('#adminId').val(response.admin.id);
+                }
+            });
+        })
+    </script>
     @include('admins.components.adminUpdateProfileModal')
     @include('admins.components.adminUpdatePasswordModal')
+    @include('admins.components.updateToast')
 @endsection
