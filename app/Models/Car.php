@@ -18,4 +18,9 @@ class Car extends Model
         self::STATUS_RESERVED,
         self::STATUS_BOOKED,
     ];
+
+    public function rentCars()
+    {
+        return $this->hasMany(RentCar::class);
+    }
 }
