@@ -71,8 +71,6 @@
 </div>
 
 <script>
-
-
     $(document).ready(function() {
 
         function fetchCars(carModel, manufacturer, minPrice, maxPrice) {
@@ -94,9 +92,8 @@
                 filter['maxPrice'] = maxPrice;
             }
 
-
             $.ajax({
-                url: '/api/admin/cars',
+                url: '/api/cars',
                 method: 'GET',
                 data: {
                     filter,
@@ -135,7 +132,6 @@
             var manufacturer = $('#manufacturer').val();
             var minPrice = $('#minPrice').val();
             var maxPrice = $('#maxPrice').val();
-
 
             $('#carsTableBody').empty();
 
