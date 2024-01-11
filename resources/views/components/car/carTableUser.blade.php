@@ -71,6 +71,8 @@
 </div>
 
 <script>
+    const authToken = localStorage.getItem('authToken');
+
     $(document).ready(function() {
 
         function fetchCars(carModel, manufacturer, minPrice, maxPrice) {
@@ -95,6 +97,10 @@
             $.ajax({
                 url: '/api/cars',
                 method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                    'Content-Type': 'application/json',
+                },
                 data: {
                     filter,
                 },
@@ -121,7 +127,7 @@
                             '</tr>';
                         tableBody.innerHTML += row;
                     });
-                }
+                },
             });
         }
 

@@ -8,7 +8,8 @@ use App\Http\Requests\Car\GetAllCarRequest;
 
 class CarController extends Controller
 {
-    public function index(GetAllCarRequest $getAllCarRequest) {
+    public function index(GetAllCarRequest $getAllCarRequest)
+    {
         $cars = Car::query()->when($getAllCarRequest->has('filter.car_model'), function($query) use($getAllCarRequest) {
             $query->where('vehicle_name', 'LIKE', "%{$getAllCarRequest->filter['car_model']}%");
         })->when($getAllCarRequest->has('filter.manufacturer'), function($query) use($getAllCarRequest) {
@@ -24,7 +25,8 @@ class CarController extends Controller
         ], 200);
     }
 
-    public function overview() {
+    public function overview()
+    {
         $TotalFreeCarStatus = Car::where('status', Car::STATUS_FREE)->count();
         $TotalBookedCarStatus = Car::where('status', Car::STATUS_BOOKED)->count();
 
