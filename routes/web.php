@@ -20,6 +20,10 @@ Route::prefix('admins')->name('admins.')->group(function () {
 
     Route::get('/cars', function () {
         return view('car.carListAdmin');
-    })->name('profile');
+    })->name('cars');
 });
+
+Route::get('/cars', function () {
+    return view('car.carListUser');
+})->name('cars');
 
