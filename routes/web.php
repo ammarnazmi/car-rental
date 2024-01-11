@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +12,26 @@ use App\Http\Controllers\AdminController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function() {
+    return redirect('/login');
+})->name('login');
+
+Route::get('/login', function() {
+    return view('user.userLoginForm');
+});
+
+Route::get('/register', function() {
+    return view('user.userRegistrationForm');
+});
+
+Route::get('/cars', function () {
+    return view('car.carListUser');
+})->name('cars');
+
 Route::prefix('admins')->name('admins.')->group(function () {
+    Route::get('/login', function() {
+        return view('admins.adminLoginForm');
+    });
     Route::get('/profile', function () {
         return view('admins.adminProfile');
     })->name('profile');
@@ -22,8 +40,4 @@ Route::prefix('admins')->name('admins.')->group(function () {
         return view('car.carListAdmin');
     })->name('cars');
 });
-
-Route::get('/cars', function () {
-    return view('car.carListUser');
-})->name('cars');
 
