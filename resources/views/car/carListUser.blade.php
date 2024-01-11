@@ -17,6 +17,6 @@
     </div>
 
     @include('components.user.userBookingModal')
-
+    @include('components.toast')
     <script></script>
 @endsection

@@ -71,9 +71,8 @@
 </div>
 
 <script>
-    const authToken = localStorage.getItem('authToken');
-
     $(document).ready(function() {
+        const authToken = localStorage.getItem('authToken');
 
         function fetchCars(carModel, manufacturer, minPrice, maxPrice) {
             var filter = {};

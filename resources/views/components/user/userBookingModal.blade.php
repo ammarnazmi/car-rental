@@ -1,6 +1,6 @@
 <div>
     <div class="modal fade" id="userBookingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form action="" method="post" id="updateProfileForm">
+        <form action="" method="post" id="userBookingFormId">
             @csrf
             <input type="hidden" id="adminId">
             <div class="modal-dialog ">
@@ -29,7 +29,8 @@
                             </div>
                             <div class="col-md-6">
                                 <label for="endDate">End Date</label>
-                                <input id="endDateId" class="form-control" type="date" name="endDate" min="<?php echo date('Y-m-d'); ?>" disabled>
+                                <input id="endDateId" class="form-control" type="date" name="endDate"
+                                    min="<?php echo date('Y-m-d'); ?>" disabled>
                             </div>
                         </div>
                         <div class="form-group pt-2">
@@ -40,7 +41,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button  id="cancelBookingCarId" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button id="cancelBookingCarId" type="button" class="btn btn-secondary"
+                            data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </div>
@@ -50,10 +52,42 @@
 </div>
 
 <script>
+    $(document).ready(function() {
+        const authToken = localStorage.getItem('authToken');
+
+        $('#userBookingFormId').submit(function(event) {
+            event.preventDefault();
+
+            var carId = $('#adminId').val();
+            var startDate = $('#startDateId').val();
+            var endDate = $('#endDateId').val();
+            var totalPrice = $('#totalPriceId').val();
+
+            $.ajax({
+                url: '/api/rent',
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${authToken}`,
+                },
+                data: {
+                    car_id: carId,
+                    start_date: startDate,
+                    end_date: endDate,
+                    total_price: totalPrice,
+                },
+                success: function(response) {
+                    $('#successToast').toast('show');
+                    document.getElementById("successToastMessage").textContent = response.message;
+                },
+            });
+        });
+    });
+
     $(document).on('click', '#userBookingButton', function() {
         $('#manufacturerId').val($(this).data('manufacturer'));
         $('#vehicleId').val($(this).data('vehicle'));
         $('#priceId').val($(this).data('price'));
+        $('#adminId').val($(this).data('id'));
     });
 
     $(document).ready(function() {
@@ -64,7 +98,7 @@
             if (!isNaN(startDate.getTime()) && !isNaN(endDate.getTime())) {
                 var timeDiff = Math.abs(endDate.getTime() - startDate.getTime());
                 var days = Math.ceil(timeDiff / (1000 * 3600 * 24)) + 1;
-                var totalPrice = (days *  parseFloat($('#priceId').val())).toFixed(2);
+                var totalPrice = (days * parseFloat($('#priceId').val())).toFixed(2);
 
                 $("#totalPriceId").val(totalPrice);
             }
@@ -89,11 +123,8 @@
         $("#endDateId").prop('disabled', !startDateValue);
     }
 
-    $("#startDateId").change(function () {
+    $("#startDateId").change(function() {
         toggleEndDate();
         setMinEndDate();
     });
-
-
-
 </script>
