@@ -59,8 +59,10 @@
                     $('#successToast').toast('show');
                 },
                 error: function(error) {
-                    document.getElementById("errorToastMessage").textContent = error.responseJSON.message;
-                    $('#errorToast').toast('show');
+                    if(error.status == 404) {
+                        document.getElementById("errorToastMessage").textContent = error.responseJSON.message;
+                        $('#errorToast').toast('show');
+                    }
 
                     if(error.responseJSON.errors.current_password) {
                         document.getElementById("currentPasswordErrorMessage").textContent = error.responseJSON.errors.current_password[0];
