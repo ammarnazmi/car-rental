@@ -19,8 +19,8 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::prefix('user')->name('user')->controller(UserController::class)->group(function () {
         Route::get('/', 'index');
-        Route::put('update-password', 'updatePassword');
-        Route::put('update-profile', 'updateProfile');
+        Route::put('{id}/update-profile', 'updateProfile');
+        Route::put('{id}/update-password', 'updatePassword');
     });
 });
 

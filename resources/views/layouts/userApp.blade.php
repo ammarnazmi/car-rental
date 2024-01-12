@@ -42,7 +42,8 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
                     <div class="navbar-nav">
                         <a class="nav-link {{ Request::is('cars') ? 'active' : '' }}" href="{{ url('cars') }}">Cars</a>
-                        <a class="nav-link {{ Request::is('admins/profile') ? 'active' : '' }}"  href="{{ url('admins/profile') }}">Profile</a>
+                        <a class="nav-link {{ Request::is('profile') ? 'active' : '' }}"  href="{{ url('profile') }}">Profile</a>
+                        <a class="nav-link {{ Request::is('history') ? 'active' : '' }}"  href="{{ url('history') }}">History</a>
                         <button class="btn btn-primary">Logout</button>
                     </div>
                 </div>

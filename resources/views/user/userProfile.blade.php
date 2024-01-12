@@ -77,11 +77,12 @@
                     $('#updateUsername').val(response.user.name);
                     $('#updateEmail').val(response.user.email);
                     $('#updatePhoneNumber').val(response.user.phone);
+                    $('#userId').val(response.user.id);
                 }
             });
         })
     </script>
-    @include('components.user.adminUpdateProfileModal')
-    @include('components.admins.adminUpdatePasswordModal')
+    @include('components.user.userUpdateProfileModal')
+    @include('components.user.userUpdatePasswordModal')
     @include('components.toast')
 @endsection
