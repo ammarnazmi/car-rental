@@ -1,3 +1,7 @@
+Notes: 
+This project was built with laravel V9. 
+please make sure change the php version that compatible with Laravel9
+
 Step to run this code:
 
 1. composer install.
