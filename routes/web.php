@@ -26,7 +26,11 @@ Route::get('/register', function() {
 
 Route::get('/cars', function () {
     return view('car.carListUser');
-})->name('cars');
+})->name('user.cars');
+
+Route::get('/profile', function () {
+    return view('user.userProfile');
+})->name('user.profile');
 
 Route::prefix('admins')->name('admins.')->group(function () {
     Route::get('/login', function() {
