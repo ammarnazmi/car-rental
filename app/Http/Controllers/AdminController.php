@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function index(Request $request)
     {
-        $admin = Admin::find(1);
+        $admin = Admin::find($request->user()->id);
 
         if (!$admin) {
             return response()->json([
