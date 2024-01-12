@@ -44,7 +44,7 @@
                         <a class="nav-link {{ Request::is('cars') ? 'active' : '' }}" href="{{ url('cars') }}">Cars</a>
                         <a class="nav-link {{ Request::is('profile') ? 'active' : '' }}"  href="{{ url('profile') }}">Profile</a>
                         <a class="nav-link {{ Request::is('history') ? 'active' : '' }}"  href="{{ url('history') }}">History</a>
-                        <button class="btn btn-primary">Logout</button>
+                        <button id="logout" type="button" class="btn btn-primary">Logout</button>
                     </div>
                 </div>
             </div>
@@ -54,6 +54,25 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            const authToken = localStorage.getItem('authToken');
+            $('#logout').on('click',function() {
+                $.ajax({
+                    url: '/api/logout',
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`,
+                    },
+                    success: function(response) {
+                        window.location.href = '/login'
+                    },
+                });
+            });
+        })
+
+    </script>
 </body>
 
 </html>

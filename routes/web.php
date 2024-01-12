@@ -32,6 +32,10 @@ Route::get('/profile', function () {
     return view('user.userProfile');
 })->name('user.profile');
 
+Route::get('/history', function () {
+    return view('user.userHistory');
+})->name('user.history');
+
 Route::prefix('admins')->name('admins.')->group(function () {
     Route::get('/login', function() {
         return view('admins.adminLoginForm');
