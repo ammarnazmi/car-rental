@@ -76,8 +76,12 @@
                     total_price: totalPrice,
                 },
                 success: function(response) {
+                    $('#userBookingModal').modal('hide');
                     $('#successToast').toast('show');
+
                     document.getElementById("successToastMessage").textContent = response.message;
+
+                    clearInputs()
                 },
             });
         });
