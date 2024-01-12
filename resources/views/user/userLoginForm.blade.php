@@ -36,41 +36,41 @@
     </div>
 
     <script>
-    $(document).ready(function() {
-        $('#userLoginId').submit(function(event) {
-            event.preventDefault();
+        $(document).ready(function() {
+            $('#userLoginId').submit(function(event) {
+                event.preventDefault();
 
-            var email = $('#emailId').val();
-            var password = $('#passwordId').val();
+                var email = $('#emailId').val();
+                var password = $('#passwordId').val();
 
-            $.ajax({
-                url: '/api/login',
-                method: 'POST',
-                data: {
-                    email: email,
-                    password: password,
-                },
-                success: function(response) {
-                    localStorage.setItem('authToken', response.token);
+                $.ajax({
+                    url: '/api/login',
+                    method: 'POST',
+                    data: {
+                        email: email,
+                        password: password,
+                    },
+                    success: function(response) {
+                        localStorage.setItem('authToken', response.token);
 
-                    window.location.href = '/cars'
-                },
-                error: function(error) {
-                    if(error.status == 404) {
-                        document.getElementById("errorToastMessage").textContent = error.responseJSON.message;
-                        $('#errorToast').toast('show');
+                        window.location.href = '/cars'
+                    },
+                    error: function(error) {
+                        if(error.status == 404) {
+                            document.getElementById("errorToastMessage").textContent = error.responseJSON.message;
+                            $('#errorToast').toast('show');
+                        }
+
+                        if (error.responseJSON.errors.password) {
+                            document.getElementById("passwordLoginErrorMessage").textContent = error.responseJSON.errors.password[0];
+                        }
+
+                        if(error.responseJSON.errors.email) {
+                            document.getElementById("emailLoginErrorMesage").textContent = error.responseJSON.errors.email[0];
+                        }
                     }
-
-                    if (error.responseJSON.errors.password) {
-                        document.getElementById("passwordLoginErrorMessage").textContent = error.responseJSON.errors.password[0];
-                    }
-
-                    if(error.responseJSON.errors.email) {
-                        document.getElementById("emailLoginErrorMesage").textContent = error.responseJSON.errors.email[0];
-                    }
-                }
+                });
             });
-        });
-    })
+        })
     </script>
 @endsection
